@@ -11,7 +11,10 @@
 <body>
 <div class="container">
 	<div ng-controller="mainCtrl">
-		<h1>{{date.raw | date: 'hh mm ss' }}</h1>
+		<div id="datetime">
+		 <h1>{{date.raw | date: 'hh mm ss' }}</h1>
+		 <h2>{{date.raw | date:'EEEE, MMMM yyyy' }}</h2>
+		</div>
 	</div>
 </div>
 <script src="js/angular.min.js"></script>
