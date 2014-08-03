@@ -10,16 +10,24 @@
 </head>
 <body>
 <div class="container">
-	<div data-ng-view></div>
-		<div id="menubar">
-			<ul class="list">
-				<li><a class="home" href"#/"></a></li>
-				<li><a class="list" href"#/settings"></a></li>
-				</ul>
+	<div ng-controller="mainCtrl">
+		<div id="datetime">
+		 <h1>{{date.raw | date: 'hh mm ss' }}</h1>
+		 <h2>{{date.raw | date:'EEEE, MMMM yyyy' }}</h2>
+		</div>
+	<div id="forecast">
+		<ul class="row">
+			<li ng-repeat="day in weather.forecast.forecastday" class="col">
+				<img class" {{ day.icon }}" ng-src="{{ day.icon_url }}" />
+				<h3>{{ day.high.fahrenheit }}</h3>
+				<h4 ng-if="$index == 0">Today</h4>
+				<h4 ng-if="$index !=0"> {{day.date.weekday}}</h4>
 				</div>
-</div>
+				</li>
+				</ul>
 
-<script type="text/ng-template" id="templates/home.html"></script>
+	</div>
+</div>
 <script src="js/angular.min.js"></script>
 <script src="js/angular-route.min.js"></script>
 <script src="js/app.js"></script>

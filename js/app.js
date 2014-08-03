@@ -1,7 +1,8 @@
+
+
+
+
 angular.module('weatherApp', ['ngRoute'])
-
-
-
 
 //.provider is an api method that takes both a name of the service as well as a function that defines the actual provider
 .provider('Weather', function(){
@@ -47,8 +48,19 @@ angular.module('weatherApp', ['ngRoute'])
 		location: 'autoip'
 	};
 	var service = {
-		user: defaults
+		user: {},
+		save: function() {
+			sessionStorage.weather =
+			angular.toJson(service.user)
+		},
+		restore: function() {
+			service.user =
+			angular.fromJson(sessionStorage.weather) || defaults
+
+			return service.user;
+		}
 	};
+	service.restore();
 	return service;
 })
 
@@ -91,11 +103,8 @@ angular.module('weatherApp', ['ngRoute'])
 		$scope.weather.forecast = data;
 
 	})
-//controller for the settings page
-.controller('settingsCtrl',
-	function($scope) {
 
-	})
+
 
 
 });
