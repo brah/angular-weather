@@ -1,5 +1,9 @@
 angular.module('weatherApp', ['ngRoute'])
-//.provider is an api method that takes both a name of the service as well as a funciton that defines the actual provider
+
+
+
+
+//.provider is an api method that takes both a name of the service as well as a function that defines the actual provider
 .provider('Weather', function(){
 	var apiKey ="";
 
@@ -37,11 +41,34 @@ angular.module('weatherApp', ['ngRoute'])
 		}
 	}
 })
-
+//user
+.factory('UserService', function(){
+	var defaults = {
+		location: 'autoip'
+	};
+	var service = {
+		user: defaults
+	};
+	return service;
+})
 
 //injecting the Weather service into the .config function and configuring the service with the api key
+
+
 .config(function(WeatherProvider) {
 	WeatherProvider.setApiKey('fc524d75ad3af57e');
+})
+.config(function($routeProvider) {
+	$routeProvider
+	.when('/', {
+		templateUrl: 'templates/home.html',
+		controller: 'mainCtrl'
+	})
+	.when('/settings', {
+		templateUrl: 'templates/settings.html',
+		controller: 'settingsCtrl'
+	})
+	.otherwise({redirectTo: '/'});
 })
 .controller('mainCtrl', 
 	function($scope, $timeout, Weather) {
@@ -62,6 +89,11 @@ angular.module('weatherApp', ['ngRoute'])
 	Weather.getWeatherForecast("CA/Los_Angeles") //Hardcoding Los_Angeles to cehck if it works
 	.then(function(data) {
 		$scope.weather.forecast = data;
+
+	})
+//controller for the settings page
+.controller('settingsCtrl',
+	function($scope) {
 
 	})
 
