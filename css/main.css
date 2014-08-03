@@ -9,3 +9,17 @@
 #datetime h2 {
 	font-size: 1.0em;
 }
+
+#forecast ul li {
+	font-size: 4.5em;
+	text-align: center;
+	float:left;
+	margin: 1.0em;
+}
+#forecast ul li h3 {
+	font-size: 1.4em;
+}
+
+ul {
+list-style-type: none;
+}
