@@ -4,8 +4,8 @@
 	"description": "Checkin the weather maaaaaan",
 	"version": "1",
 	"permissions": [
-	"http://api.wunderground.com/api",
-	"http://autocomplete.wunderground.com/api"
+	"http://api.wunderground.com/api/",
+	"http://autocomplete.wunderground.com/api/"
 	],
 	"background": {
 		"scripts": ["js/angular.min.js"]
