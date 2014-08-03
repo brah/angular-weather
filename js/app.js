@@ -1,4 +1,32 @@
 angular.module('weatherApp', ['ngRoute'])
+//.provider is an api method that takes both a name of the service as well as a funciton that defines the actual provider
+.provider('Weather', function(){
+	var apiKey ="";
+
+
+//creating a function that will generate the url because the API requires to pass the key with every request
+	this.getUrl = function(type, ext) {
+		return "http://api.wunderground/com/api/" +
+		this.apiKey + "/" + type + "/q/" +
+		ext + '.json';
+	};
+
+	this.setApiKey = function(key) {
+		if (key) this.apiKey = key;
+
+	};
+//defining a $get() function that returns methods availble to the service
+	this.$get = function($http) {
+		return {
+
+		}
+	}
+})
+
+//injecting the Weather service into the .config function and configuring the service with the api key
+.config(function(WeatherProvider) {
+	WeatherProvider.setApiKey('d5a51941dc311af4');
+})
 .controller('mainCtrl', function($scope, $timeout) {
 	//Building a date object
 	$scope.date = {};
